@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap');
+
 :root {
   --bg: #FAFAFA;
   --panel: #FFFFFF;
   --border: #E1E1E1;
   --text: #1A1A1A;
   --text-soft: #6B6B6B;
+  --cobalt: #2451FF;
   --black: #121212;
   --black-hover: #000000;
   --danger: #D82C0D;
   --accent-bg: #F4F4F4;
+  --radius: 10px;
 }
 
 * { box-sizing: border-box; }
@@ -16,7 +20,8 @@ body.checkout-shopify {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .sc-wrap {
@@ -30,7 +35,7 @@ body.checkout-shopify {
   .sc-wrap { grid-template-columns: 1.1fr 0.9fr; min-height: 100vh; }
 }
 
-/* ---------- Columna resumen (imita el panel derecho de Shopify) ---------- */
+/* ---------- Columna resumen ---------- */
 .sc-resumen {
   background: var(--accent-bg);
   border-left: 1px solid var(--border);
@@ -49,8 +54,9 @@ body.checkout-shopify {
 .sc-producto .thumb {
   width: 64px;
   height: 64px;
-  border-radius: 8px;
-  background: #E4E4E4;
+  border-radius: 10px;
+  background: linear-gradient(160deg, #E8E8E8, #F3F3F3);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,25 +69,36 @@ body.checkout-shopify {
   position: absolute;
   top: -8px;
   right: -8px;
-  background: #6B6B6B;
+  background: var(--cobalt);
   color: #fff;
   font-size: 0.65rem;
+  font-weight: 600;
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sc-producto .nombre { font-size: 0.92rem; font-weight: 500; }
+.sc-producto .nombre { font-size: 0.95rem; font-weight: 600; }
 .sc-producto .marca { font-size: 0.78rem; color: var(--text-soft); }
-.sc-producto .precio { margin-left: auto; font-size: 0.92rem; }
+.sc-producto .precio { margin-left: auto; font-size: 0.95rem; font-weight: 600; }
 
 .sc-totales { padding-top: 16px; font-size: 0.92rem; }
 .sc-totales .fila { display: flex; justify-content: space-between; padding: 6px 0; color: var(--text-soft); }
-.sc-totales .total { display: flex; justify-content: space-between; padding-top: 12px; margin-top: 8px; border-top: 1px solid var(--border); font-size: 1.15rem; font-weight: 600; color: var(--text); }
-.sc-totales .total small { display: block; font-size: 0.7rem; font-weight: 400; color: var(--text-soft); }
+.sc-totales .total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 14px;
+  margin-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+}
+.sc-totales .total small { display: block; font-size: 0.7rem; font-weight: 400; color: var(--text-soft); font-family: 'Inter', sans-serif; }
 
 /* ---------- Columna formulario ---------- */
 .sc-form-col {
@@ -89,41 +106,54 @@ body.checkout-shopify {
   order: 1;
 }
 
-.sc-brand { font-weight: 700; font-size: 1.05rem; margin-bottom: 32px; }
+.sc-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
 
 .sc-section { margin-bottom: 28px; }
-.sc-section h4 { font-size: 1rem; margin: 0 0 12px; }
+.sc-section h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  margin: 0 0 12px;
+}
 
-.sc-field { margin-bottom: 10px; }
+.sc-field { margin-bottom: 12px; }
 
 .sc-field label {
   display: block;
   font-size: 0.78rem;
   color: var(--text-soft);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 
 .sc-field input {
   width: 100%;
   border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 12px 14px;
+  border-radius: var(--radius);
+  padding: 13px 14px;
   font-size: 0.95rem;
   color: var(--text);
   outline: none;
+  background: var(--panel);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
+.sc-field input::placeholder { color: #A8A8A8; }
+
 .sc-field input:focus {
-  border-color: var(--black);
-  box-shadow: 0 0 0 1px var(--black);
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 3px rgba(36, 81, 255, 0.12);
 }
 
 .sc-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
 .sc-pago-box {
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 16px;
   background: var(--panel);
 }
@@ -131,7 +161,7 @@ body.checkout-shopify {
 .sc-pago-tabs {
   display: flex;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -147,33 +177,36 @@ body.checkout-shopify {
 }
 
 .sc-pago-tabs button.activo {
-  color: var(--text);
-  border-bottom-color: var(--black);
+  color: var(--cobalt);
+  border-bottom-color: var(--cobalt);
   font-weight: 600;
 }
+
+.sc-pago-tabs button:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .sc-error {
   color: var(--danger);
   font-size: 0.8rem;
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   display: none;
 }
 .sc-error.visible { display: block; }
 
 .sc-submit {
   width: 100%;
-  background: var(--black);
+  background: var(--cobalt);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius);
   padding: 16px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   margin-top: 20px;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
-.sc-submit:hover { background: var(--black-hover); }
+.sc-submit:hover { background: #16309C; }
+.sc-submit:active { transform: scale(0.99); }
 .sc-submit:disabled { opacity: 0.55; cursor: wait; }
 
 .sc-seguro {
