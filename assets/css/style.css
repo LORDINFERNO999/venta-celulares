@@ -201,8 +201,9 @@ body {
 
 .card .media img,
 .card .media svg {
-  max-height: 100%;
-  max-width: 68%;
+  width: auto;
+  height: 84%;
+  max-width: 80%;
   object-fit: contain;
   filter: drop-shadow(0 14px 24px rgba(18, 20, 26, 0.20));
   transition: transform 0.3s ease;

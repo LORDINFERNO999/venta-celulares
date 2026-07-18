@@ -38,7 +38,7 @@ function imagenCelular(array $producto, string $contexto = 'card'): string
     $uid = 'g' . substr(md5($nombre . $marca . $contexto), 0, 6);
 
     return <<<SVG
-<svg viewBox="0 0 220 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="$nombre">
+<svg viewBox="0 0 220 300" width="220" height="300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="$nombre">
   <defs>
     <linearGradient id="{$uid}s" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="$c1"/>
