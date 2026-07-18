@@ -21,13 +21,8 @@ define('PAYU_ACCOUNT_ID',  'TU_ACCOUNT_ID');
 define('PAYU_API_KEY',     'TU_API_KEY');
 define('PAYU_API_LOGIN',   'TU_API_LOGIN');
 
-// URLs del gateway (cambian entre sandbox y producción)
-define('PAYU_CHECKOUT_URL', PAYU_TEST_MODE
-    ? 'https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/'
-    : 'https://checkout.payulatam.com/ppp-web-gateway-payu/'
-);
-
-// API de Pagos (integración directa/embebida, sin redirigir a PayU)
+// API de Pagos de PayU (integración EMBEBIDA / servidor a servidor).
+// El pago se procesa dentro de tu página; el cliente NUNCA es redirigido a PayU.
 define('PAYU_PAYMENTS_API_URL', PAYU_TEST_MODE
     ? 'https://sandbox.api.payulatam.com/payments-api/4.0/service.cgi'
     : 'https://api.payulatam.com/payments-api/4.0/service.cgi'
