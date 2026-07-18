@@ -11,10 +11,10 @@ try {
     // El campo "imagen" es opcional: si lo dejas vacío se dibuja una ilustración
     // del celular con el color de la marca. Ponle una ruta o URL para usar foto real.
     $productos = [
-        ['id' => 1, 'nombre' => 'Galaxy Signal X12', 'marca' => 'Samsung', 'descripcion' => 'Pantalla AMOLED 120Hz, cámara triple 108MP', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.7" AMOLED', 'precio' => 2190000, 'stock' => 14, 'imagen' => ''],
-        ['id' => 2, 'nombre' => 'Pulse P40 Lite', 'marca' => 'Xiaomi', 'descripcion' => 'Carga rápida 67W, cuerpo ultraliviano', 'ram' => '6GB', 'almacenamiento' => '128GB', 'bateria' => '4500mAh', 'pantalla' => '6.5" IPS', 'precio' => 1090000, 'stock' => 22, 'imagen' => ''],
-        ['id' => 3, 'nombre' => 'Orbit One 5G', 'marca' => 'Motorola', 'descripcion' => 'Conectividad 5G, resistente a salpicaduras', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.6" LCD', 'precio' => 1650000, 'stock' => 9, 'imagen' => ''],
-        ['id' => 4, 'nombre' => 'Aria S Pro', 'marca' => 'Apple', 'descripcion' => 'Chip A-series, sistema de cámaras Pro', 'ram' => '6GB', 'almacenamiento' => '256GB', 'bateria' => '4325mAh', 'pantalla' => '6.1" Super Retina', 'precio' => 4890000, 'stock' => 5, 'imagen' => ''],
+        ['id' => 1, 'nombre' => 'Galaxy Signal X12', 'marca' => 'Samsung', 'descripcion' => 'Pantalla AMOLED 120Hz, cámara triple 108MP', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.7" AMOLED', 'precio' => 2190000, 'stock' => 14, 'imagen' => 'assets/images/galaxy-signal-x12.jpg'],
+        ['id' => 2, 'nombre' => 'Pulse P40 Lite', 'marca' => 'Xiaomi', 'descripcion' => 'Carga rápida 67W, cuerpo ultraliviano', 'ram' => '6GB', 'almacenamiento' => '128GB', 'bateria' => '4500mAh', 'pantalla' => '6.5" IPS', 'precio' => 1090000, 'stock' => 22, 'imagen' => 'assets/images/pulse-p40-lite.jpg'],
+        ['id' => 3, 'nombre' => 'Orbit One 5G', 'marca' => 'Motorola', 'descripcion' => 'Conectividad 5G, resistente a salpicaduras', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.6" LCD', 'precio' => 1650000, 'stock' => 9, 'imagen' => 'assets/images/orbit-one-5g.jpg'],
+        ['id' => 4, 'nombre' => 'Aria S Pro', 'marca' => 'Apple', 'descripcion' => 'Chip A-series, sistema de cámaras Pro', 'ram' => '6GB', 'almacenamiento' => '256GB', 'bateria' => '4325mAh', 'pantalla' => '6.1" Super Retina', 'precio' => 4890000, 'stock' => 5, 'imagen' => 'assets/images/aria-s-pro.jpg'],
     ];
 }
 ?>

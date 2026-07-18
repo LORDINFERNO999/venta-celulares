@@ -94,6 +94,10 @@ $total = (float) $producto['precio'] + $envio;
             <option value="PA">Panamá</option>
             <option value="US">Estados Unidos</option>
             <option value="ES">España</option>
+            <option value="SA">Arabia Saudita</option>
+            <option value="AE">Emiratos Árabes Unidos</option>
+            <option value="QA">Catar</option>
+            <option value="KW">Kuwait</option>
             <option value="OT">Otro</option>
           </select>
         </div>

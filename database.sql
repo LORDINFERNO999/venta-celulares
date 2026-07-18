@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS ordenes (
 -- ------------------------------------------------------------
 -- Datos de ejemplo para el catálogo (opcional)
 -- ------------------------------------------------------------
-INSERT INTO productos (nombre, marca, descripcion, ram, almacenamiento, bateria, pantalla, precio, stock) VALUES
-('Galaxy Signal X12', 'Samsung',  'Pantalla AMOLED 120Hz, cámara triple 108MP', '8GB', '256GB', '5000mAh', '6.7" AMOLED',       2190000, 14),
-('Pulse P40 Lite',    'Xiaomi',   'Carga rápida 67W, cuerpo ultraliviano',       '6GB', '128GB', '4500mAh', '6.5" IPS',          1090000, 22),
-('Orbit One 5G',      'Motorola', 'Conectividad 5G, resistente a salpicaduras',  '8GB', '256GB', '5000mAh', '6.6" LCD',          1650000,  9),
-('Aria S Pro',        'Apple',    'Chip A-series, sistema de cámaras Pro',        '6GB', '256GB', '4325mAh', '6.1" Super Retina', 4890000,  5);
+INSERT INTO productos (nombre, marca, descripcion, ram, almacenamiento, bateria, pantalla, precio, stock, imagen) VALUES
+('Galaxy Signal X12', 'Samsung',  'Pantalla AMOLED 120Hz, cámara triple 108MP', '8GB', '256GB', '5000mAh', '6.7" AMOLED',       2190000, 14, 'assets/images/galaxy-signal-x12.jpg'),
+('Pulse P40 Lite',    'Xiaomi',   'Carga rápida 67W, cuerpo ultraliviano',       '6GB', '128GB', '4500mAh', '6.5" IPS',          1090000, 22, 'assets/images/pulse-p40-lite.jpg'),
+('Orbit One 5G',      'Motorola', 'Conectividad 5G, resistente a salpicaduras',  '8GB', '256GB', '5000mAh', '6.6" LCD',          1650000,  9, 'assets/images/orbit-one-5g.jpg'),
+('Aria S Pro',        'Apple',    'Chip A-series, sistema de cámaras Pro',        '6GB', '256GB', '4325mAh', '6.1" Super Retina', 4890000,  5, 'assets/images/aria-s-pro.jpg');

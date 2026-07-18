@@ -1,0 +1,29 @@
+CÓMO AGREGAR LAS FOTOS REALES DE LOS CELULARES
+================================================
+
+Pon aquí las fotos de tus celulares con EXACTAMENTE estos nombres para que
+aparezcan en el catálogo de ejemplo:
+
+  galaxy-signal-x12.jpg
+  pulse-p40-lite.jpg
+  orbit-one-5g.jpg
+  aria-s-pro.jpg
+
+Mientras un archivo NO exista, la tienda muestra automáticamente la ilustración
+del celular (el dibujo con el color de la marca). Apenas subes la foto con el
+nombre correcto, se reemplaza sola por la foto real. No hay que tocar código.
+
+RECOMENDACIONES DE LA FOTO
+--------------------------
+- Formato: JPG o PNG (mejor PNG con fondo transparente).
+- Tamaño sugerido: 800 x 800 px (cuadrada) o el celular centrado.
+- Peso: menos de 300 KB para que cargue rápido.
+
+SI USAS BASE DE DATOS
+---------------------
+Si tus productos vienen de la tabla "productos", guarda la ruta o URL de la foto
+en la columna "imagen", por ejemplo:
+  assets/images/mi-foto.jpg      (archivo local)
+  https://misitio.com/foto.jpg   (enlace externo)
+
+Si la columna "imagen" queda vacía (NULL), se muestra la ilustración.

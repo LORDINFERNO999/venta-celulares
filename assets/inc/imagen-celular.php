@@ -15,10 +15,18 @@ function imagenCelular(array $producto, string $contexto = 'card'): string
 {
     $nombre = htmlspecialchars($producto['nombre'] ?? 'Celular', ENT_QUOTES);
 
-    // 1) Si hay una imagen real definida, se usa.
-    if (!empty($producto['imagen'])) {
-        $src = htmlspecialchars($producto['imagen'], ENT_QUOTES);
-        return '<img src="' . $src . '" alt="' . $nombre . '" loading="lazy">';
+    // 1) Si hay una foto definida, se usa.
+    //    - URL (http/https): se usa siempre.
+    //    - Ruta local (ej: assets/images/galaxy.jpg): solo si el archivo existe;
+    //      si aún no lo has subido, se muestra la ilustración (evita el icono roto).
+    $imagen = trim($producto['imagen'] ?? '');
+    if ($imagen !== '') {
+        $esUrl  = preg_match('#^https?://#i', $imagen) === 1;
+        $existe = $esUrl || is_file(dirname(__DIR__, 2) . '/' . ltrim($imagen, '/'));
+        if ($existe) {
+            $src = htmlspecialchars($imagen, ENT_QUOTES);
+            return '<img src="' . $src . '" alt="' . $nombre . '" loading="lazy">';
+        }
     }
 
     // 2) Ilustración SVG con degradado según la marca.
