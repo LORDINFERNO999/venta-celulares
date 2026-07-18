@@ -76,6 +76,9 @@ if ($telefono !== '')  $direccionPayu['phone']   = $telefono;
 // País de procesamiento = país de la cuenta PayU (configurable).
 $paymentCountry = defined('PAYU_PAYMENT_COUNTRY') ? PAYU_PAYMENT_COUNTRY : 'CO';
 
+// Identificador de sesión del dispositivo (antifraude PayU). Requerido en producción.
+$deviceSessionId = md5(uniqid((string) mt_rand(), true));
+
 $body = [
     'language' => 'es',
     'command'  => 'SUBMIT_TRANSACTION',
@@ -118,6 +121,7 @@ $body = [
         'type'             => 'AUTHORIZATION_AND_CAPTURE',
         'paymentMethod'    => $paymentMethod,
         'paymentCountry'   => $paymentCountry,
+        'deviceSessionId'  => $deviceSessionId,
         'ipAddress'        => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
         'cookie'           => session_id() ?: bin2hex(random_bytes(8)),
         'userAgent'        => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',

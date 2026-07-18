@@ -23,7 +23,9 @@ $total = (float) $producto['precio'] + $envio;
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pagar pedido</title>
 <link rel="stylesheet" href="assets/css/checkout-shopify.css">
-<script src="https://sandbox.gwenter.gtwy.com/?merchant_id=<?= PAYU_MERCHANT_ID ?>" defer></script>
+<!-- Fingerprint antifraude de PayU. Cambia de sandbox a producción según PAYU_TEST_MODE.
+     Verifica el dominio correcto en la documentación de tu cuenta PayU. -->
+<script src="https://<?= PAYU_TEST_MODE ? 'sandbox.' : '' ?>gwenter.gtwy.com/?merchant_id=<?= PAYU_MERCHANT_ID ?>" defer></script>
 </head>
 <body class="checkout-shopify">
 
