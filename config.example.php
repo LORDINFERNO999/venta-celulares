@@ -51,6 +51,21 @@ define('PAYU_CONFIRMATION_URL', SITE_URL . '/confirmation.php');
 // que PayU pueda notificarte (no funciona apuntando a localhost). En local vas
 // a ver bien response.php, pero confirmation.php solo se puede probar ya en Hostinger.
 
+// ---------- USUARIOS DEL PANEL (sin registro) ----------
+// El panel de pedidos (pedidos.php) usa dos cuentas fijas. Si NO defines nada
+// aquí, funcionan las cuentas por defecto que están en auth.php:
+//     admin    / admin123   (rol admin: puede cambiar el estado de los pedidos)
+//     vendedor / vende123   (rol vendedor: solo puede ver los pedidos)
+//
+// Para cambiar las claves de forma segura, descomenta el bloque de abajo y
+// reemplaza los hash. Genera un hash nuevo con:
+//     php -r "echo password_hash('tu-clave-nueva', PASSWORD_DEFAULT);"
+//
+// define('APP_USERS', [
+//     'admin'    => ['pass' => '$2y$12$...', 'rol' => 'admin',    'nombre' => 'Administrador'],
+//     'vendedor' => ['pass' => '$2y$12$...', 'rol' => 'vendedor', 'nombre' => 'Vendedor'],
+// ]);
+
 // ---------- BASE DE DATOS (LOCAL) ----------
 // Valores típicos de XAMPP/WAMP. Cuando subas a Hostinger, reemplaza estos 4
 // por los datos de tu base de datos MySQL de Hostinger (Panel > Bases de datos).

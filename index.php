@@ -77,6 +77,7 @@ try {
 <div class="seguridad">
   <span>🔒 Transacciones procesadas por PayU Latam, PCI-DSS nivel 1.</span>
   <span>Aceptamos PSE, Visa, Mastercard, Efecty y Baloto.</span>
+  <a href="login.php" style="margin-left:auto; color:inherit; text-decoration:none; font-family:'JetBrains Mono',monospace;">Panel del equipo →</a>
 </div>
 
 </body>
