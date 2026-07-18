@@ -9,10 +9,15 @@
   --alert: #FF4B3E;
   --line: #D6D9DF;
   --card: #FFFFFF;
-  --radius: 4px;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow-sm: 0 1px 2px rgba(18, 20, 26, 0.04);
+  --shadow-lg: 0 18px 40px rgba(18, 20, 26, 0.12);
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -20,6 +25,7 @@ body {
   color: var(--ink);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 .mono { font-family: 'JetBrains Mono', monospace; }
@@ -29,8 +35,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 6vw;
+  padding: 20px 6vw;
   border-bottom: 1px solid var(--line);
+  background: rgba(241, 242, 244, 0.85);
+  backdrop-filter: saturate(180%) blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 .brand {
@@ -47,20 +58,37 @@ body {
   color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: var(--card);
 }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 64px 6vw 48px;
+  padding: 72px 6vw 56px;
   border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(36, 81, 255, 0.14), transparent 68%);
+  pointer-events: none;
 }
 
 .hero h1 {
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.2rem, 5vw, 3.7rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
   margin: 0 0 18px;
   max-width: 780px;
 }
@@ -71,9 +99,10 @@ body {
 }
 
 .hero p {
-  max-width: 520px;
+  max-width: 540px;
   color: var(--ink-soft);
-  font-size: 1.05rem;
+  font-size: 1.06rem;
+  line-height: 1.55;
   margin: 0 0 28px;
 }
 
@@ -88,8 +117,9 @@ body {
   font-size: 0.72rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 6px 12px;
+  padding: 7px 13px;
   color: var(--ink-soft);
+  background: var(--card);
 }
 
 /* ---------- Grid ---------- */
@@ -100,7 +130,7 @@ body {
   gap: 24px;
 }
 
-/* Signature element: tarjeta con recorte tipo SIM card */
+/* Tarjeta con recorte tipo chip de SIM */
 .card {
   background: var(--card);
   border: 1px solid var(--line);
@@ -109,11 +139,11 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .card::before {
-  /* esquina cortada estilo chip de SIM */
   content: "";
   position: absolute;
   top: 0;
@@ -124,11 +154,13 @@ body {
   border-left: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   clip-path: polygon(100% 0, 0 0, 100% 100%);
+  z-index: 2;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 24px rgba(18, 20, 26, 0.08);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: #C3C7D0;
 }
 
 .card .media {
@@ -139,7 +171,8 @@ body {
   justify-content: center;
   font-family: 'Space Grotesk', sans-serif;
   color: var(--ink-soft);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  gap: 6px;
 }
 
 .card .body {
@@ -168,11 +201,11 @@ body {
 .card .desc {
   color: var(--ink-soft);
   font-size: 0.88rem;
-  line-height: 1.4;
+  line-height: 1.45;
   margin: 0;
 }
 
-/* specs tipo ficha técnica */
+/* Ficha técnica */
 .specs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -180,7 +213,7 @@ body {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
   color: var(--ink-soft);
-  padding: 10px 0;
+  padding: 12px 0;
   border-top: 1px dashed var(--line);
   border-bottom: 1px dashed var(--line);
 }
@@ -191,7 +224,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   margin-top: auto;
+  padding-top: 4px;
 }
 
 .precio {
@@ -212,21 +247,40 @@ body {
   background: var(--cobalt);
   color: #fff;
   border: none;
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   padding: 11px 18px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background 0.15s ease;
+  white-space: nowrap;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .btn-comprar:hover { background: var(--cobalt-deep); }
+.btn-comprar:active { transform: scale(0.97); }
 
 .stock-baja {
   color: var(--alert);
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stock-baja::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--alert);
+  animation: pulso 1.4s ease-in-out infinite;
+}
+
+@keyframes pulso {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 /* ---------- Footer / seguridad ---------- */
@@ -256,19 +310,20 @@ body {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 40px 32px;
+  padding: 44px 32px;
   text-align: center;
+  box-shadow: var(--shadow-lg);
 }
 
 .estado-icono {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-family: 'Space Grotesk', sans-serif;
 }
 
@@ -281,7 +336,7 @@ body {
   margin: 0 0 8px;
 }
 
-.estado-card p { color: var(--ink-soft); font-size: 0.92rem; }
+.estado-card p { color: var(--ink-soft); font-size: 0.92rem; line-height: 1.5; }
 
 .estado-card a {
   display: inline-block;
@@ -293,6 +348,9 @@ body {
   font-size: 0.8rem;
 }
 
+.estado-card a:hover { text-decoration: underline; }
+
 @media (max-width: 640px) {
   .topbar, .hero, .catalogo, .seguridad { padding-left: 5vw; padding-right: 5vw; }
+  .hero { padding-top: 48px; }
 }
