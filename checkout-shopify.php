@@ -81,6 +81,22 @@ $total = (float) $producto['precio'] + $envio;
             <input type="tel" id="telefono" placeholder="300 000 0000" required>
           </div>
         </div>
+        <div class="sc-field">
+          <label for="pais">País</label>
+          <select id="pais" name="pais" required>
+            <option value="CO" selected>Colombia</option>
+            <option value="MX">México</option>
+            <option value="PE">Perú</option>
+            <option value="AR">Argentina</option>
+            <option value="CL">Chile</option>
+            <option value="BR">Brasil</option>
+            <option value="EC">Ecuador</option>
+            <option value="PA">Panamá</option>
+            <option value="US">Estados Unidos</option>
+            <option value="ES">España</option>
+            <option value="OT">Otro</option>
+          </select>
+        </div>
       </div>
 
       <div class="sc-section">
@@ -150,6 +166,10 @@ form.addEventListener('submit', async (e) => {
     cvv: document.getElementById('cvv').value,
     nombre: document.getElementById('nombre').value,
     email: document.getElementById('email').value,
+    telefono: document.getElementById('telefono').value,
+    direccion: document.getElementById('direccion').value,
+    ciudad: document.getElementById('ciudad').value,
+    pais: document.getElementById('pais').value,
   };
 
   try {

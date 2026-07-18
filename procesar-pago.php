@@ -19,6 +19,14 @@ $vencimiento  = preg_replace('/[^\d]/', '', $input['vencimiento'] ?? ''); // MMA
 $cvv          = preg_replace('/\D/', '', $input['cvv'] ?? '');
 $nombre       = trim($input['nombre'] ?? '');
 $email        = trim($input['email'] ?? '');
+$telefono     = trim($input['telefono'] ?? '');
+$direccion    = trim($input['direccion'] ?? '');
+$ciudad       = trim($input['ciudad'] ?? '');
+// País del COMPRADOR en ISO 3166-1 alfa-2 (CO, US, MX, ES...). Clave para pagos internacionales.
+$pais         = strtoupper(preg_replace('/[^A-Za-z]/', '', $input['pais'] ?? ''));
+if (strlen($pais) !== 2) {
+    $pais = defined('PAYU_PAYMENT_COUNTRY') ? PAYU_PAYMENT_COUNTRY : 'CO';
+}
 
 // ---------- Validaciones mínimas ----------
 if (strlen($numero) < 13 || strlen($numero) > 19) responder(false, ['mensaje' => 'Número de tarjeta inválido.']);
@@ -33,11 +41,13 @@ $stmt->execute([$productoId]);
 $producto = $stmt->fetch();
 if (!$producto) responder(false, ['mensaje' => 'Producto no encontrado.']);
 
-// ---------- Detectar franquicia por el BIN ----------
+// ---------- Detectar franquicia por el BIN (incluye marcas internacionales) ----------
 $paymentMethod = match (true) {
     preg_match('/^4/', $numero) === 1 => 'VISA',
-    preg_match('/^5[1-5]/', $numero) === 1 => 'MASTERCARD',
+    preg_match('/^(5[1-5]|2[2-7])/', $numero) === 1 => 'MASTERCARD',   // incluye rango 2-series
     preg_match('/^3[47]/', $numero) === 1 => 'AMEX',
+    preg_match('/^3(0[0-5]|[68])/', $numero) === 1 => 'DINERS',
+    preg_match('/^6(011|5|4[4-9])/', $numero) === 1 => 'DISCOVER',
     default => null,
 };
 if (!$paymentMethod) responder(false, ['mensaje' => 'No reconocemos la franquicia de esta tarjeta.']);
@@ -54,6 +64,17 @@ $pdo->prepare('INSERT INTO ordenes (reference_code, producto_id, cantidad, valor
 
 // Firma de orden (misma fórmula que en Web Checkout)
 $signature = md5(PAYU_API_KEY . '~' . PAYU_MERCHANT_ID . '~' . $referenceCode . '~' . $valor . '~' . PAYU_CURRENCY);
+
+// Dirección de facturación/envío del comprador. Es CLAVE para pagos
+// internacionales: sin el país del comprador PayU suele rechazar o marcar
+// como fraude las tarjetas extranjeras.
+$direccionPayu = ['country' => $pais];
+if ($direccion !== '') $direccionPayu['street1'] = $direccion;
+if ($ciudad !== '')    $direccionPayu['city']    = $ciudad;
+if ($telefono !== '')  $direccionPayu['phone']   = $telefono;
+
+// País de procesamiento = país de la cuenta PayU (configurable).
+$paymentCountry = defined('PAYU_PAYMENT_COUNTRY') ? PAYU_PAYMENT_COUNTRY : 'CO';
 
 $body = [
     'language' => 'es',
@@ -73,7 +94,19 @@ $body = [
             'additionalValues' => [
                 'TX_VALUE' => ['value' => $valor, 'currency' => PAYU_CURRENCY],
             ],
-            'buyer' => ['emailAddress' => $email],
+            'buyer' => [
+                'fullName'        => $nombre,
+                'emailAddress'    => $email,
+                'contactPhone'    => $telefono,
+                'shippingAddress' => $direccionPayu,
+            ],
+        ],
+        // Datos del pagador con dirección de facturación (requerido para internacional).
+        'payer' => [
+            'fullName'       => $nombre,
+            'emailAddress'   => $email,
+            'contactPhone'   => $telefono,
+            'billingAddress' => $direccionPayu,
         ],
         'creditCard' => [
             'number'         => $numero,
@@ -84,7 +117,7 @@ $body = [
         'extraParameters' => ['INSTALLMENTS_NUMBER' => 1],
         'type'             => 'AUTHORIZATION_AND_CAPTURE',
         'paymentMethod'    => $paymentMethod,
-        'paymentCountry'   => 'CO',
+        'paymentCountry'   => $paymentCountry,
         'ipAddress'        => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
         'cookie'           => session_id() ?: bin2hex(random_bytes(8)),
         'userAgent'        => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',

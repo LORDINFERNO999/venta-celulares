@@ -137,7 +137,8 @@ body.checkout-shopify {
   margin-bottom: 5px;
 }
 
-.sc-field input {
+.sc-field input,
+.sc-field select {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -146,12 +147,16 @@ body.checkout-shopify {
   color: var(--text);
   outline: none;
   background: var(--panel);
+  font-family: 'Inter', sans-serif;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .sc-field input::placeholder { color: #A8A8A8; }
 
-.sc-field input:focus {
+.sc-field select { cursor: pointer; appearance: none; }
+
+.sc-field input:focus,
+.sc-field select:focus {
   border-color: var(--cobalt);
   box-shadow: 0 0 0 3px rgba(36, 81, 255, 0.12);
 }

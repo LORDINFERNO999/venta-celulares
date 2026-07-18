@@ -34,7 +34,18 @@ define('PAYU_PAYMENTS_API_URL', PAYU_TEST_MODE
 );
 
 // ---------- DATOS DEL COMERCIO ----------
+// Moneda en la que cobras. Debe estar habilitada en tu cuenta de PayU.
+//   COP = pesos colombianos | USD = dólares (para cobros internacionales)
+//   Otras: MXN, PEN, ARS, BRL, CLP según tu cuenta/país.
 define('PAYU_CURRENCY', 'COP');
+
+// País de PROCESAMIENTO: es el país de TU cuenta PayU (no el del comprador).
+//   CO=Colombia, MX=México, PA=Panamá, PE=Perú, AR=Argentina, BR=Brasil.
+// Para aceptar tarjetas del exterior (pagos internacionales), tu cuenta PayU
+// debe tener habilitado el procesamiento internacional / cross-border. El país
+// del COMPRADOR se envía aparte (lo elige él en el checkout).
+define('PAYU_PAYMENT_COUNTRY', 'CO');
+
 define('PAYU_TEST_TRANSACTION', PAYU_TEST_MODE ? 'TRUE' : 'FALSE');
 
 // ---------- URL DEL SITIO ----------
