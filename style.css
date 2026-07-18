@@ -1,0 +1,298 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --paper: #F1F2F4;
+  --ink: #12141A;
+  --ink-soft: #565A66;
+  --cobalt: #2451FF;
+  --cobalt-deep: #16309C;
+  --alert: #FF4B3E;
+  --line: #D6D9DF;
+  --card: #FFFFFF;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ---------- Header ---------- */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 6vw;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+.brand span { color: var(--cobalt); }
+
+.topbar .tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 64px 6vw 48px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px;
+  max-width: 780px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--cobalt);
+}
+
+.hero p {
+  max-width: 520px;
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin: 0 0 28px;
+}
+
+.hero .badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero .badges span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  color: var(--ink-soft);
+}
+
+/* ---------- Grid ---------- */
+.catalogo {
+  padding: 48px 6vw 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 24px;
+}
+
+/* Signature element: tarjeta con recorte tipo SIM card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card::before {
+  /* esquina cortada estilo chip de SIM */
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(18, 20, 26, 0.08);
+}
+
+.card .media {
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(160deg, #E7E9ED, #F6F7F9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.card .body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.card .marca {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cobalt);
+}
+
+.card h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.card .desc {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* specs tipo ficha técnica */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  padding: 10px 0;
+  border-top: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--line);
+}
+
+.specs b { color: var(--ink); }
+
+.card .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.precio {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.precio small {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 400;
+  font-size: 0.65rem;
+  color: var(--ink-soft);
+  display: block;
+}
+
+.btn-comprar {
+  background: var(--cobalt);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 11px 18px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-comprar:hover { background: var(--cobalt-deep); }
+
+.stock-baja {
+  color: var(--alert);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+}
+
+/* ---------- Footer / seguridad ---------- */
+.seguridad {
+  padding: 28px 6vw 48px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+/* ---------- Páginas de estado (response.php) ---------- */
+.estado-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.estado-card {
+  max-width: 460px;
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.estado-icono {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.6rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.estado-aprobada .estado-icono { background: #E6F4EA; color: #1E8E3E; }
+.estado-rechazada .estado-icono { background: #FCE8E6; color: var(--alert); }
+.estado-pendiente .estado-icono { background: #FFF4DE; color: #B8860B; }
+
+.estado-card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 0 8px;
+}
+
+.estado-card p { color: var(--ink-soft); font-size: 0.92rem; }
+
+.estado-card a {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--cobalt);
+  font-weight: 600;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 640px) {
+  .topbar, .hero, .catalogo, .seguridad { padding-left: 5vw; padding-right: 5vw; }
+}
