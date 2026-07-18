@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/assets/inc/imagen-celular.php';
 
 try {
@@ -29,7 +30,14 @@ try {
 
 <header class="topbar">
   <div class="brand">signal<span>.</span>store</div>
-  <div class="tag">Pago protegido · PayU Latam</div>
+  <nav class="topnav">
+    <span class="tag">Pago protegido · PayU Latam</span>
+    <?php if (esta_autenticado()): ?>
+      <a class="btn-panel" href="pedidos.php">Panel de pedidos</a>
+    <?php else: ?>
+      <a class="btn-panel" href="login.php">Acceso admin</a>
+    <?php endif; ?>
+  </nav>
 </header>
 
 <section class="hero">

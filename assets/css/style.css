@@ -52,6 +52,12 @@ body {
 }
 .brand span { color: var(--cobalt); }
 
+.topnav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .topbar .tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.72rem;
@@ -62,6 +68,26 @@ body {
   border-radius: 999px;
   padding: 6px 12px;
   background: var(--card);
+}
+
+.btn-panel {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  color: #fff;
+  background: var(--cobalt);
+  padding: 9px 16px;
+  border-radius: 999px;
+  transition: background 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-panel:hover { background: var(--cobalt-deep); }
+.btn-panel:active { transform: scale(0.97); }
+
+@media (max-width: 560px) {
+  .topbar .tag { display: none; }
 }
 
 /* ---------- Hero ---------- */
