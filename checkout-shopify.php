@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/assets/inc/imagen-celular.php';
 
 $productoId = (int) ($_GET['producto_id'] ?? 0);
 $pdo = getDB();
@@ -31,7 +32,7 @@ $total = (float) $producto['precio'] + $envio;
   <!-- Resumen del pedido -->
   <aside class="sc-resumen">
     <div class="sc-producto">
-      <div class="thumb">📱<span class="qty">1</span></div>
+      <div class="thumb"><?= imagenCelular($producto, 'thumb') ?><span class="qty">1</span></div>
       <div>
         <div class="marca"><?= htmlspecialchars($producto['marca']) ?></div>
         <div class="nombre"><?= htmlspecialchars($producto['nombre']) ?></div>

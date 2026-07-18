@@ -1,16 +1,19 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/assets/inc/imagen-celular.php';
 
 try {
     $pdo = getDB();
     $productos = $pdo->query('SELECT * FROM productos ORDER BY id')->fetchAll();
 } catch (Throwable $e) {
     // Si aún no has creado la base de datos, se muestra el catálogo de ejemplo.
+    // El campo "imagen" es opcional: si lo dejas vacío se dibuja una ilustración
+    // del celular con el color de la marca. Ponle una ruta o URL para usar foto real.
     $productos = [
-        ['id' => 1, 'nombre' => 'Galaxy Signal X12', 'marca' => 'Samsung', 'descripcion' => 'Pantalla AMOLED 120Hz, cámara triple 108MP', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.7" AMOLED', 'precio' => 2190000, 'stock' => 14],
-        ['id' => 2, 'nombre' => 'Pulse P40 Lite', 'marca' => 'Xiaomi', 'descripcion' => 'Carga rápida 67W, cuerpo ultraliviano', 'ram' => '6GB', 'almacenamiento' => '128GB', 'bateria' => '4500mAh', 'pantalla' => '6.5" IPS', 'precio' => 1090000, 'stock' => 22],
-        ['id' => 3, 'nombre' => 'Orbit One 5G', 'marca' => 'Motorola', 'descripcion' => 'Conectividad 5G, resistente a salpicaduras', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.6" LCD', 'precio' => 1650000, 'stock' => 9],
-        ['id' => 4, 'nombre' => 'Aria S Pro', 'marca' => 'Apple', 'descripcion' => 'Chip A-series, sistema de cámaras Pro', 'ram' => '6GB', 'almacenamiento' => '256GB', 'bateria' => '4325mAh', 'pantalla' => '6.1" Super Retina', 'precio' => 4890000, 'stock' => 5],
+        ['id' => 1, 'nombre' => 'Galaxy Signal X12', 'marca' => 'Samsung', 'descripcion' => 'Pantalla AMOLED 120Hz, cámara triple 108MP', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.7" AMOLED', 'precio' => 2190000, 'stock' => 14, 'imagen' => ''],
+        ['id' => 2, 'nombre' => 'Pulse P40 Lite', 'marca' => 'Xiaomi', 'descripcion' => 'Carga rápida 67W, cuerpo ultraliviano', 'ram' => '6GB', 'almacenamiento' => '128GB', 'bateria' => '4500mAh', 'pantalla' => '6.5" IPS', 'precio' => 1090000, 'stock' => 22, 'imagen' => ''],
+        ['id' => 3, 'nombre' => 'Orbit One 5G', 'marca' => 'Motorola', 'descripcion' => 'Conectividad 5G, resistente a salpicaduras', 'ram' => '8GB', 'almacenamiento' => '256GB', 'bateria' => '5000mAh', 'pantalla' => '6.6" LCD', 'precio' => 1650000, 'stock' => 9, 'imagen' => ''],
+        ['id' => 4, 'nombre' => 'Aria S Pro', 'marca' => 'Apple', 'descripcion' => 'Chip A-series, sistema de cámaras Pro', 'ram' => '6GB', 'almacenamiento' => '256GB', 'bateria' => '4325mAh', 'pantalla' => '6.1" Super Retina', 'precio' => 4890000, 'stock' => 5, 'imagen' => ''],
     ];
 }
 ?>
@@ -42,7 +45,7 @@ try {
 <section class="catalogo">
   <?php foreach ($productos as $p): ?>
     <article class="card">
-      <div class="media">📱 <?= htmlspecialchars($p['nombre']) ?></div>
+      <div class="media"><?= imagenCelular($p, 'card') ?></div>
       <div class="body">
         <span class="marca"><?= htmlspecialchars($p['marca']) ?></span>
         <h3><?= htmlspecialchars($p['nombre']) ?></h3>

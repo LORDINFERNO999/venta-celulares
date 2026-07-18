@@ -164,15 +164,27 @@ body {
 }
 
 .card .media {
-  aspect-ratio: 4 / 3;
-  background: linear-gradient(160deg, #E7E9ED, #F6F7F9);
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 50% 32%, #EEF0F4, #E1E4EA);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-  gap: 6px;
+  padding: 22px;
+  overflow: hidden;
+}
+
+.card .media img,
+.card .media svg {
+  max-height: 100%;
+  max-width: 68%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 24px rgba(18, 20, 26, 0.20));
+  transition: transform 0.3s ease;
+}
+
+.card:hover .media img,
+.card:hover .media svg {
+  transform: translateY(-5px) rotate(-1.5deg) scale(1.03);
 }
 
 .card .body {
